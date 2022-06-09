@@ -1,20 +1,26 @@
 function assertArraysEqual(actual, expected, testName) {
     //   are actual and expected arrays the same length
     //   do actual and expected arrays have the same values
-    var failMessage = 'FAILED ['+testName+'] Expected "'+expected+'", but got "'+actual+'"'
+    var areEqual = true
   
     if(actual.length !== expected.length) {
-      console.log(failMessage)
-      return
+      areEqual = false
     }
 
-    for(var i = 0 ; i < actual.length ; i++) {
-        if(actual[i] !== expected[i]) {
-          console.log(failMessage)
-          return
+    if(areEqual) {
+      for(var i = 0 ; i < actual.length ; i++) {
+        if(areEqual && actual[i] !== expected[i]) {
+          areEqual = false
         } 
+      }
     }
-    console.log('passed')
+    
+    // console.log(areEqual ? 'passed' : 'FAILED ['+testName+'] Expected "'+expected+'", but got "'+actual+'"')
+    if(areEqual) {
+      console.log('passed')
+    } else {
+      console.log('FAILED ['+testName+'] Expected "'+expected+'", but got "'+actual+'"')
+    }
   }
     
     var expected = ['b', 'r', 'o', 'k', 'e', 'n'];
